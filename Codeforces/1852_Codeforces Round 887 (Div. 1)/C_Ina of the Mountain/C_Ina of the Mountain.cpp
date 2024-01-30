@@ -32,8 +32,26 @@ template<typename T,typename K>ostream & operator << (ostream &out, pair<T,K> &a
 
 void solve()
 {
-    int n;
-    cin>>n;
+    int n,k;
+    cin>>n>>k;
+    int prev = 0;
+    ll ans = 0;
+    priority_queue<int> q;
+    for(int i = 0; i < n; ++i){
+        int cur;
+        cin>>cur;
+        if(cur==k)cur = 0;
+        int assent = cur-prev;
+        if(prev>cur) assent+=k;
+        if(assent) q.push(-assent);
+        if(prev<cur){
+            int fix = q.top();
+            q.pop();
+            ans -= fix;
+        }
+        prev = cur;
+    }
+    cout<<ans<<"\n";
 }
 int main()
 {

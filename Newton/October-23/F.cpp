@@ -1,0 +1,78 @@
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,fma")
+#pragma GCC optimization ("O3")
+#pragma GCC optimization ("unroll-loops")
+#include<bits/stdc++.h>
+#define ll           long long
+#define pb           push_back
+#define F            first
+#define S            second
+#define mp           make_pair
+#define pii          pair<int,int>
+#define pll          pair<ll,ll>
+#define vi           vector<int>
+#define vll          vector<ll>
+#define vN           vector<node>
+#define vT           vector<T>
+#define vpii         vector<pii>
+#define vpll         vector<pll>
+#define all(x)       x.begin(),x.end()
+#define u32          uint32_t
+#define u64          uint64_t
+#ifndef ONLINE_JUDGE
+    #define Log(x)  cerr<<"Debug: "<<x
+#else
+    #define Log(x)  0
+#endif
+using namespace std;
+template<typename T>istream & operator >> (istream &in, vector<T> &a){for(auto &x:a)in>>x;return in;}
+template<typename T>ostream & operator << (ostream &out, vector<T> &a){for(auto &x:a)out<<x<<" ";return out;}
+template<typename T,typename K>istream & operator >> (istream &in,  pair<T,K> &a){in>>a.F>>a.S;return in;}
+template<typename T,typename K>ostream & operator << (ostream &out, pair<T,K> &a){out<<a.F<<" "<<a.S;return out;}
+
+void solve()
+{
+    int n;
+    cin>>n;
+}
+int main()
+{
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n;
+    cin>>n;
+    vpii p(n);
+    cin>>p;
+    map<int,vector<int>> rows,cols;
+    for(auto x:p){
+        rows[x.F].pb(x.S);
+        cols[x.S].pb(x.F);
+    }
+    bool one = false;
+    for(auto x:p){
+        if((rows[x.F].size()==1)&&(cols[x.S].size()==1)){
+            one = true;
+        }
+    }
+    int ans = 0,t=0;
+    for(auto x:rows){
+        if(x.S.size()>1)
+            ++ans;
+        else
+            ++t;
+    }
+    for(auto x:cols){
+        if(x.S.size()>1)
+            ++ans;
+        else
+            ++t;
+    }
+    if(one){
+        cout<<(ans+2)<<"\n";
+    }
+    else if(t)
+        cout<<(ans+1)<<"\n";
+    else
+        cout<<ans<<"\n";
+	return 0;
+}
